@@ -1,26 +1,133 @@
 @import "tailwindcss";
 
+/* Thème par classe .dark (toggle) — le script inline du layout l'applique avant le premier paint */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ---------- Clair : papier ivoire, encre sépia, bordeaux & or ---------- */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f2e9d9;
+  --surface: #fbf5e9;
+  --surface-2: #f6eddc;
+  --foreground: #2a221e;
+  --muted: #6c5c4c;
+  --border: #d9c7ac;
+  --primary: #7b1e2b; /* bordeaux / vin */
+  --primary-hover: #6a1925;
+  --primary-foreground: #fbf5e9;
+  --accent: #a9854f; /* or patiné */
+  --ring: #7b1e2b;
+  --grain-opacity: 0.05;
+  --vignette: rgba(60, 40, 30, 0.12);
+}
+
+/* ---------- Sombre : nuit chaude, lueur de bougie ---------- */
+.dark {
+  --background: #161210;
+  --surface: #1f1814;
+  --surface-2: #261d18;
+  --foreground: #ece1d0;
+  --muted: #a7937c;
+  --border: #382b23;
+  --primary: #c8505d; /* vin éclairci pour le contraste */
+  --primary-hover: #d76470;
+  --primary-foreground: #161210;
+  --accent: #cdab68; /* or */
+  --ring: #c8505d;
+  --grain-opacity: 0.06;
+  --vignette: rgba(0, 0, 0, 0.45);
 }
 
 @theme inline {
   --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-accent: var(--accent);
+  --color-ring: var(--ring);
+
+  --font-serif: var(--font-cormorant), Georgia, "Times New Roman", serif;
+  --font-body: var(--font-eb-garamond), Georgia, serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  border-color: var(--border);
+}
+
+html {
+  color-scheme: light;
+}
+.dark html,
+html.dark {
+  color-scheme: dark;
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  position: relative;
+}
+
+/* Grain de papier + vignette, très discrets, derrière le contenu */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: var(--grain-opacity);
+  mix-blend-mode: multiply;
+}
+.dark body::before {
+  mix-blend-mode: screen;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(120% 90% at 50% 0%, transparent 55%, var(--vignette) 100%);
+}
+
+/* Le contenu passe au-dessus des couches décoratives */
+body > * {
+  position: relative;
+  z-index: 1;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+}
+
+::selection {
+  background: var(--primary);
+  color: var(--primary-foreground);
+}
+
+/* Accessibilité : anneau de focus visible */
+:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }

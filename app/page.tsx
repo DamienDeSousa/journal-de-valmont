@@ -1,65 +1,205 @@
 import Image from "next/image";
+import Link from "next/link";
+import { SiteHeader } from "@/components/site-header";
+import { SiteFooter } from "@/components/site-footer";
+import { Reviews } from "@/components/reviews";
+import { Faq } from "@/components/faq";
+import { NewsletterForm } from "@/components/newsletter-form";
+
+const steps = [
+  {
+    n: "I",
+    title: "Vous vous abonnez",
+    text: "Choisissez votre rythme et indiquez l'adresse où la lettre doit voyager.",
+  },
+  {
+    n: "II",
+    title: "Une lettre prend forme",
+    text: "À la plume, je copie pour vous un poème d'amour sur un beau papier, cacheté à la main.",
+  },
+  {
+    n: "III",
+    title: "Elle arrive chez vous",
+    text: "Quelques jours plus tard, une enveloppe cachetée vous attend. Rien que pour vous.",
+  },
+];
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <>
+      <SiteHeader />
+
+      <main className="flex-1">
+        {/* Hero */}
+        <section className="mx-auto w-full max-w-5xl px-5 pt-20 pb-24 text-center sm:px-8 sm:pt-28">
+          <p className="text-xs uppercase tracking-[0.3em] text-accent">
+            Club de correspondance · Lettres manuscrites
           </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+
+          <h1 className="mx-auto mt-6 max-w-3xl text-balance text-4xl leading-[1.05] text-foreground sm:text-6xl">
+            Recevez l&apos;amour,&nbsp;
+            <span className="italic text-primary">cacheté à la cire.</span>
+          </h1>
+
+          <p className="mx-auto mt-6 max-w-xl text-lg text-muted">
+            Chaque mois, une lettre manuscrite et un poème d&apos;amour, tracés à
+            la plume et scellés à la cire, rien que pour vous. Le plaisir oublié
+            de décacheter une enveloppe.
+          </p>
+
+          <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <Link
+              href="#offre"
+              className="inline-flex h-12 items-center justify-center rounded-full bg-primary px-7 text-base font-medium text-primary-foreground transition-colors hover:bg-primary-hover"
+            >
+              Recevoir ma première lettre
+            </Link>
+            <a
+              href="#concept"
+              className="inline-flex h-12 items-center justify-center rounded-full border border-border px-7 text-base text-foreground transition-colors hover:border-primary hover:text-primary"
+            >
+              Comment ça marche
+            </a>
+          </div>
+
+          {/* Sceau à la fleur de lys */}
+          <div className="mt-16 flex justify-center" aria-hidden="true">
             <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
+              src="/brand/logo_tampon.png"
+              alt=""
+              width={1024}
+              height={1040}
+              priority
+              className="h-28 w-28 opacity-80 dark:opacity-90 dark:invert sm:h-32 sm:w-32"
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+          </div>
+        </section>
+
+        {/* Concept */}
+        <section
+          id="concept"
+          className="scroll-mt-20 border-y border-border bg-surface/50"
+        >
+          <div className="mx-auto w-full max-w-5xl px-5 py-20 sm:px-8">
+            <h2 className="text-center text-3xl text-foreground sm:text-4xl">
+              Comment ça marche
+            </h2>
+            <div className="mt-14 grid gap-10 sm:grid-cols-3">
+              {steps.map((step) => (
+                <div key={step.n} className="text-center">
+                  <span className="font-serif text-2xl italic text-accent">
+                    {step.n}
+                  </span>
+                  <h3 className="mt-3 text-xl text-foreground">{step.title}</h3>
+                  <p className="mt-2 text-muted">{step.text}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Aperçu d'un poème */}
+        <section id="poeme" className="scroll-mt-20">
+          <div className="mx-auto w-full max-w-2xl px-5 py-24 sm:px-8">
+            <p className="text-center text-xs uppercase tracking-[0.3em] text-accent">
+              Un aperçu
+            </p>
+            <figure className="mt-8 rounded-sm border border-border bg-surface px-8 py-12 shadow-sm sm:px-14">
+              <blockquote className="space-y-4 text-center font-serif text-2xl italic leading-relaxed text-foreground sm:text-[1.7rem]">
+                <p>Je n&apos;ai pas d&apos;or à mettre à vos poignets,</p>
+                <p>seulement l&apos;encre lente de mes veilles —</p>
+                <p>ces quelques mots, pliés, que le matin</p>
+                <p>posera, tout tremblants, contre vos mains.</p>
+              </blockquote>
+              <figcaption className="mt-8 text-center text-sm uppercase tracking-[0.18em] text-muted">
+                Extrait — Le journal de Valmont
+              </figcaption>
+            </figure>
+          </div>
+        </section>
+
+        {/* Avis */}
+        <section id="avis" className="scroll-mt-20 border-y border-border bg-surface/50">
+          <div className="mx-auto w-full max-w-5xl px-5 py-20 sm:px-8">
+            <h2 className="text-center text-3xl text-foreground sm:text-4xl">
+              Ils décachètent chaque mois
+            </h2>
+            <div className="mt-12">
+              <Reviews />
+            </div>
+          </div>
+        </section>
+
+        {/* Offre (teaser — la boutique complète arrive en Phase 2) */}
+        <section
+          id="offre"
+          className="scroll-mt-20 border-t border-border bg-surface/50"
+        >
+          <div className="mx-auto w-full max-w-md px-5 py-24 text-center sm:px-8">
+            <h2 className="text-3xl text-foreground sm:text-4xl">L&apos;abonnement</h2>
+            <p className="mt-3 text-muted">
+              Une lettre manuscrite et son poème, chaque mois, dans votre boîte.
+            </p>
+
+            <div className="mt-10 rounded-sm border border-border bg-surface p-8 text-left shadow-sm">
+              <p className="font-serif text-4xl text-foreground">
+                Bientôt
+                <span className="ml-2 align-middle text-base not-italic text-muted">
+                  / formule à venir
+                </span>
+              </p>
+              <ul className="mt-6 space-y-3 text-muted">
+                <li>· Une lettre écrite et cachetée à la main</li>
+                <li>· Un poème d&apos;amour choisi pour la saison</li>
+                <li>· Sans engagement, résiliable à tout moment</li>
+              </ul>
+              <button
+                type="button"
+                disabled
+                className="mt-8 inline-flex h-12 w-full cursor-not-allowed items-center justify-center rounded-full bg-primary/40 px-7 text-base font-medium text-primary-foreground"
+              >
+                Ouverture des abonnements prochainement
+              </button>
+            </div>
+          </div>
+        </section>
+
+        {/* FAQ */}
+        <section id="faq" className="scroll-mt-20">
+          <div className="mx-auto w-full max-w-2xl px-5 py-20 sm:px-8">
+            <h2 className="text-center text-3xl text-foreground sm:text-4xl">
+              Questions fréquentes
+            </h2>
+            <div className="mt-12">
+              <Faq />
+            </div>
+          </div>
+        </section>
+
+        {/* Newsletter */}
+        <section
+          id="newsletter"
+          className="scroll-mt-20 border-t border-border bg-surface/50"
+        >
+          <div className="mx-auto w-full max-w-2xl px-5 py-20 text-center sm:px-8">
+            <p className="text-xs uppercase tracking-[0.3em] text-accent">
+              La correspondance
+            </p>
+            <h2 className="mt-6 text-3xl text-foreground sm:text-4xl">
+              Recevez des nouvelles du club
+            </h2>
+            <p className="mx-auto mt-3 max-w-md text-muted">
+              Quelques mots, de temps en temps, quand une nouvelle lettre se
+              prépare. Jamais d&apos;encombrement.
+            </p>
+            <div className="mt-8">
+              <NewsletterForm />
+            </div>
+          </div>
+        </section>
       </main>
-    </div>
+
+      <SiteFooter />
+    </>
   );
 }
