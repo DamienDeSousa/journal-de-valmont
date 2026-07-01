@@ -59,6 +59,11 @@
 }
 
 html {
+  /* Échelle typographique globale. En % (et non px) pour respecter la taille de
+     police préférée du navigateur. 106.25 % ≈ 17px de base → tout le texte
+     (titres, corps, libellés) grossit proportionnellement. Ajuster ici pour
+     tester une taille plus/moins grande. */
+  font-size: 125%;
   color-scheme: light;
 }
 .dark html,
