@@ -5,6 +5,7 @@ import { SiteFooter } from "@/components/site-footer";
 import { Reviews } from "@/components/reviews";
 import { Faq } from "@/components/faq";
 import { NewsletterForm } from "@/components/newsletter-form";
+import { LettersGallery } from "@/components/letters-gallery";
 
 const steps = [
   {
@@ -98,6 +99,25 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Photos des lettres */}
+        <section id="lettres" className="scroll-mt-20">
+          <div className="mx-auto w-full max-w-5xl px-5 py-24 sm:px-8">
+            <p className="text-center text-xs uppercase tracking-[0.3em] text-accent">
+              En images
+            </p>
+            <h2 className="mx-auto mt-6 max-w-2xl text-balance text-center text-3xl text-foreground sm:text-4xl">
+              Chaque lettre est unique, écrite à la main
+            </h2>
+            <p className="mx-auto mt-4 max-w-xl text-center text-muted">
+              Le papier, l&apos;encre et la cire : quelques images de ce qui vous
+              attend dans la boîte aux lettres.
+            </p>
+            <div className="mt-14">
+              <LettersGallery />
+            </div>
+          </div>
+        </section>
+
         {/* Aperçu d'un poème */}
         <section id="poeme" className="scroll-mt-20">
           <div className="mx-auto w-full max-w-2xl px-5 py-24 sm:px-8">
@@ -106,10 +126,10 @@ export default function Home() {
             </p>
             <figure className="mt-8 rounded-sm border border-border bg-surface px-8 py-12 shadow-sm sm:px-14">
               <blockquote className="space-y-4 text-center font-serif text-2xl italic leading-relaxed text-foreground sm:text-[1.7rem]">
-                <p>Je n&apos;ai pas d&apos;or à mettre à vos poignets,</p>
-                <p>seulement l&apos;encre lente de mes veilles —</p>
-                <p>ces quelques mots, pliés, que le matin</p>
-                <p>posera, tout tremblants, contre vos mains.</p>
+                <p>Le remous de tes mains, rompt mon intérieur</p>
+                <p>Mordu par le moment, affamé par l’absence</p>
+                <p>Tes lèvres sur ma peau, ont forcés mes défenses</p>
+                <p>Le monde devient flou, supprimant ma douleur</p>
               </blockquote>
               <figcaption className="mt-8 text-center text-sm uppercase tracking-[0.18em] text-muted">
                 Extrait — Le journal de Valmont
@@ -118,7 +138,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Avis */}
+        {/* Avis - Commenté car aucun avis
         <section id="avis" className="scroll-mt-20 border-y border-border bg-surface/50">
           <div className="mx-auto w-full max-w-5xl px-5 py-20 sm:px-8">
             <h2 className="text-center text-3xl text-foreground sm:text-4xl">
@@ -128,7 +148,7 @@ export default function Home() {
               <Reviews />
             </div>
           </div>
-        </section>
+        </section> */}
 
         {/* Offre (teaser — la boutique complète arrive en Phase 2) */}
         <section
