@@ -18,9 +18,6 @@ export function SiteFooter() {
           <Link href="/a-propos" className="text-muted transition-colors hover:text-foreground">
             À propos
           </Link>
-          <Link href="/journal" className="text-muted transition-colors hover:text-foreground">
-            Le journal
-          </Link>
           <Link href="/cgv" className="text-muted transition-colors hover:text-foreground">
             CGV
           </Link>

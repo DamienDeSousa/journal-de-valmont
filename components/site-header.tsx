@@ -4,8 +4,7 @@ import { ThemeToggle } from "@/components/theme-toggle";
 
 const navLinks = [
   { href: "/a-propos", label: "À propos" },
-  { href: "/journal", label: "Le journal" },
-  { href: "/#avis", label: "Avis" },
+  // { href: "/#avis", label: "Avis" },
   { href: "/#faq", label: "FAQ" },
 ];
 
