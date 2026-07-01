@@ -28,7 +28,7 @@ export const defaultFaq: FaqItem[] = [
   {
     question: "Dans quels délais arrive la première lettre ?",
     answer:
-      "Comptez quelques jours après votre inscription, le temps de l'écrire et de l'acheminer jusqu'à vous.",
+      "Comptez quelques jours après votre inscription, le temps de l'écrire et de l'acheminer jusqu'à vous par voie postale.",
   },
 ];
 

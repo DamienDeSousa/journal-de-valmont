@@ -43,7 +43,7 @@ export default function Home() {
           </h1>
 
           <p className="mx-auto mt-6 max-w-xl text-lg text-muted">
-            Chaque mois, une lettre manuscrite et un poème d&apos;amour, tracés à
+            Chaque mois, une lettre manuscrite contenant un poème d&apos;amour, tracés à
             la plume et scellés à la cire, rien que pour vous. Le plaisir oublié
             de décacheter une enveloppe.
           </p>

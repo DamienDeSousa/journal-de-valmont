@@ -7,23 +7,8 @@ import { samplePoems } from "@/lib/poems";
 export const metadata: Metadata = {
   title: "À propos",
   description:
-    "Derrière Le journal de Valmont : Damien, le concept du club, ses influences et sa manière d'écrire chaque lettre à la main.",
+    "Derrière Le journal de Valmont : Damien, le concept du club, ce qui l'inspire et sa manière d'écrire chaque lettre à la main.",
 };
-
-const influences = [
-  {
-    name: "Les Liaisons dangereuses",
-    note: "Choderlos de Laclos — l'art de la lettre qui séduit, dont Valmont est le maître.",
-  },
-  {
-    name: "Les romantiques",
-    note: "Hugo, Musset, Nerval — la lettre comme aveu, l'amour porté à incandescence.",
-  },
-  {
-    name: "Les correspondances",
-    note: "Celles, réelles, des amants d'autrefois : papier jauni, encre pâlie, mots qui survivent.",
-  },
-];
 
 const method = [
   {
@@ -47,7 +32,6 @@ export default function AProposPage() {
 
       <main className="flex-1">
         {/* Intro — Damien */}
-        {/* TODO: remplacer par la vraie biographie de Damien */}
         <section className="mx-auto w-full max-w-2xl px-5 pt-20 pb-16 sm:px-8 sm:pt-28">
           <p className="text-xs uppercase tracking-[0.3em] text-accent">À propos</p>
           <h1 className="mt-6 text-4xl text-foreground sm:text-5xl">
@@ -56,15 +40,31 @@ export default function AProposPage() {
           <div className="mt-8 space-y-5 text-lg text-muted">
             <p>
               Je m&apos;appelle <span className="text-foreground">Damien</span>.
-              J&apos;ai grandi avec l&apos;idée qu&apos;une lettre n&apos;est
-              pas un message : c&apos;est une présence. Quelque chose qu&apos;on
-              tient, qu&apos;on plie, qu&apos;on range dans un tiroir et
-              qu&apos;on relit des années plus tard.
+              J&apos;ai commencé à écrire des vers un soir, et je n&apos;ai plus
+              cessé.
             </p>
             <p>
-              Le journal de Valmont est né de cette conviction : à l&apos;heure
-              où tout va vite et s&apos;efface, redonner à l&apos;amour le temps
-              long de l&apos;encre et du papier.
+              J&apos;ai choisi la poésie plutôt que la prose : pour parler
+              d&apos;amour, rien ne me semble plus juste ni plus élégant. Et le
+              sonnet en particulier, assez long pour mener une idée jusqu&apos;à
+              sa chute, assez court pour en garder la quintessence. J&apos;ai
+              voulu m&apos;approcher de sa forme la plus classique, par amour de
+              la langue française — je ne cesse d&apos;apprendre sur toutes les
+              subtilités de la langue et des règles de versification.
+            </p>
+            <p>
+              Peu à peu, j&apos;ai compris que je n&apos;écrivais plus seulement
+              pour moi. Nous vivons une époque où les hommes et les femmes se
+              parlent de moins en moins, où l&apos;on se comprend mal, où les
+              écrans nous ont rendus impatients, anxieux, plus seuls que jamais.
+              Et depuis peu, l&apos;intelligence artificielle a rendu tout lisse,
+              sans grain et sans créativité.
+            </p>
+            <p>
+              Ces lettres sont ma manière de résister à cela : revenir aux
+              choses simples, au goût de l&apos;attente, au plaisir d&apos;une
+              belle lettre tracée comme autrefois. Réapprendre à se parler, à se
+              comprendre, à s&apos;aimer.
             </p>
           </div>
         </section>
@@ -75,7 +75,7 @@ export default function AProposPage() {
             <h2 className="text-3xl text-foreground">Le concept</h2>
             <p className="mt-5 text-lg text-muted">
               Un club de correspondance. Chaque mois, vous recevez une lettre
-              manuscrite et un poème d&apos;amour, écrits à la plume et cachetés
+              manuscrite contenant un poème d&apos;amour, écrit à la plume et cacheté
               à la cire — rien que pour vous. Pas d&apos;écran, pas de
               notification : une enveloppe, un cachet à rompre, quelques vers à
               lire lentement.
@@ -83,17 +83,23 @@ export default function AProposPage() {
           </div>
         </section>
 
-        {/* Influences */}
+        {/* Ce qui m'inspire */}
         <section className="mx-auto w-full max-w-2xl px-5 py-16 sm:px-8">
-          <h2 className="text-3xl text-foreground">Mes influences</h2>
-          <ul className="mt-8 space-y-6">
-            {influences.map((inf) => (
-              <li key={inf.name}>
-                <p className="font-serif text-xl italic text-primary">{inf.name}</p>
-                <p className="mt-1 text-muted">{inf.note}</p>
-              </li>
-            ))}
-          </ul>
+          <h2 className="text-3xl text-foreground">Ce qui m&apos;inspire</h2>
+          <div className="mt-8 space-y-5 text-lg text-muted">
+            <p>
+              Je n&apos;écris pas d&apos;après les livres : je n&apos;ai lu que très peu
+              des grands auteurs de l&apos;amour. Ce qui me guide, c&apos;est ce
+              que je ressens — mes émotions, mon empathie, l&apos;attention que
+              je porte à l&apos;autre.
+            </p>
+            <p>
+              Et les belles histoires d&apos;amour, d&apos;où qu&apos;elles
+              viennent : d&apos;un dessin animé de Disney à un film comme Coup de
+              foudre à Notting Hill. La forme importe peu ; seule compte
+              l&apos;émotion, quand elle est vraie.
+            </p>
+          </div>
         </section>
 
         {/* Ma manière de travailler */}

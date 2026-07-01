@@ -9,7 +9,7 @@ export function SiteFooter() {
             Le journal de <span className="italic text-primary">Valmont</span>
           </p>
           <p className="mt-2 max-w-xs text-sm text-muted">
-            Un club de correspondance. Des lettres manuscrites et des poèmes
+            Un club de correspondance. Des lettres manuscrites contenant des poèmes
             d&apos;amour, tracés à la plume rien que pour vous.
           </p>
         </div>
