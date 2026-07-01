@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, EB_Garamond } from "next/font/google";
+import { THEME_PREPAINT_SCRIPT } from "@/lib/theme";
 import "./globals.css";
 
 const cormorant = Cormorant_Garamond({
@@ -34,9 +35,6 @@ export const metadata: Metadata = {
   },
 };
 
-// Applique le thème (clair/sombre) avant le premier paint pour éviter tout flash.
-const themeScript = `(function(){try{var t=localStorage.getItem("theme");if(t==="dark"||(!t&&window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)){document.documentElement.classList.add("dark")}}catch(e){}})()`;
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -49,7 +47,7 @@ export default function RootLayout({
       className={`${cormorant.variable} ${ebGaramond.variable} h-full`}
     >
       <head>
-        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+        <script dangerouslySetInnerHTML={{ __html: THEME_PREPAINT_SCRIPT }} />
       </head>
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
