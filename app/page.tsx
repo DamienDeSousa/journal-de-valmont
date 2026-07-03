@@ -1,11 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
-import { SiteHeader } from "@/components/site-header";
-import { SiteFooter } from "@/components/site-footer";
-import { Reviews } from "@/components/reviews";
-import { Faq } from "@/components/faq";
-import { NewsletterForm } from "@/components/newsletter-form";
-import { LettersGallery } from "@/components/letters-gallery";
+import { SiteHeader } from "@/components/layout/site-header";
+import { SiteFooter } from "@/components/layout/site-footer";
+import { Reviews } from "@/components/reviews/reviews";
+import { Faq } from "@/components/faq/faq";
+import { NewsletterForm } from "@/components/newsletter/newsletter-form";
+import { LettersGallery } from "@/components/letters/letters-gallery";
 
 const steps = [
   {

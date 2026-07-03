@@ -1,6 +1,6 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useId } from "react";
 import {
   subscribeToNewsletter,
   type NewsletterState,
@@ -8,7 +8,8 @@ import {
 
 const initialState: NewsletterState = { status: "idle", message: "" };
 
-export function NewsletterForm({ id }: { id?: string }) {
+export function NewsletterForm() {
+  const inputId = useId();
   const [state, formAction, isPending] = useActionState(
     subscribeToNewsletter,
     initialState,
@@ -17,11 +18,11 @@ export function NewsletterForm({ id }: { id?: string }) {
   return (
     <form action={formAction} className="mx-auto w-full max-w-md">
       <div className="flex flex-col gap-3 sm:flex-row">
-        <label htmlFor={id ?? "newsletter-email"} className="sr-only">
+        <label htmlFor={inputId} className="sr-only">
           Votre adresse e-mail
         </label>
         <input
-          id={id ?? "newsletter-email"}
+          id={inputId}
           type="email"
           name="email"
           required

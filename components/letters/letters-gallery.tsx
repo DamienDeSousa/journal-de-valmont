@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { LetterPlaceholder } from "@/components/letter-placeholder";
+import { LetterPlaceholder } from "@/components/letters/letter-placeholder";
 
 /**
  * Galerie « photos des lettres » de la page d'accueil.

@@ -1,68 +1,51 @@
 "use server";
 
+import {
+  createSubscriber,
+  saveSubscriber,
+  subscriberSchema,
+} from "@/lib/subscribers";
+
 export type NewsletterState = {
   status: "idle" | "success" | "error";
   message: string;
 };
 
-const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
 /**
  * Inscription à la newsletter.
  *
- * Si `RESEND_API_KEY` + `RESEND_AUDIENCE_ID` sont définis, l'adresse est ajoutée
- * à l'audience Resend. Sinon, l'action valide simplement l'email et confirme
- * (le branchement Resend se fera une fois le compte créé).
+ * Orchestre la requête (honeypot, lecture du `FormData`, messages) et délègue le
+ * métier au domaine `lib/subscribers/` : validation (zod), fabrication de
+ * l'abonné et persistance dans l'audience Resend.
  *
- * RGPD : prévoir un double opt-in (email de confirmation) avant la mise en
- * production — voir la doc Resend « Contacts » / « Broadcasts ».
+ * RGPD : prévoir un double opt-in (email de confirmation) avant d'envoyer des
+ * newsletters — voir la doc Resend « Contacts » / « Broadcasts ».
  */
 export async function subscribeToNewsletter(
   _prevState: NewsletterState,
   formData: FormData,
 ): Promise<NewsletterState> {
-  const email = String(formData.get("email") ?? "").trim();
   // Honeypot anti-bot : un champ caché qui doit rester vide.
   const honeypot = String(formData.get("company") ?? "");
-
   if (honeypot) {
     return { status: "success", message: "Merci, votre inscription est notée." };
   }
-  if (!EMAIL_RE.test(email)) {
-    return { status: "error", message: "Cette adresse e-mail ne semble pas valide." };
+
+  const result = subscriberSchema.safeParse({ email: formData.get("email") });
+  if (!result.success) {
+    return {
+      status: "error",
+      message: "Cette adresse e-mail ne semble pas valide.",
+    };
   }
 
-  const apiKey = process.env.RESEND_API_KEY;
-  const audienceId = process.env.RESEND_AUDIENCE_ID;
-
-  if (apiKey && audienceId) {
-    try {
-      const res = await fetch(
-        `https://api.resend.com/audiences/${audienceId}/contacts`,
-        {
-          method: "POST",
-          headers: {
-            Authorization: `Bearer ${apiKey}`,
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ email, unsubscribed: false }),
-        },
-      );
-      if (!res.ok) {
-        return {
-          status: "error",
-          message: "Un souci est survenu. Réessayez dans un instant.",
-        };
-      }
-    } catch {
-      return {
-        status: "error",
-        message: "Un souci est survenu. Réessayez dans un instant.",
-      };
-    }
-  } else {
-    // Pas encore branché : on trace côté serveur pour ne rien perdre.
-    console.info(`[newsletter] inscription en attente de branchement Resend : ${email}`);
+  const subscriber = createSubscriber(result.data.email);
+  const saved = await saveSubscriber(subscriber);
+  if (!saved.ok) {
+    return {
+      status: "error",
+      message: "Un souci est survenu. Réessayez dans un instant.",
+    };
   }
 
   return {

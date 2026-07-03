@@ -79,9 +79,14 @@ Ne devine pas une API depuis ta mémoire : vérifie dans les docs locales.
 - **Extrais la logique métier hors des composants** autant que possible. Un
   composant orchestre l'UI ; le reste (calculs, accès données, règles métier,
   état complexe) part dans un helper (`lib/`) ou un hook (`hooks/`).
-- **Découpage par domaine métier dans `lib/` et `hooks/` : un domaine = un
-  dossier.** P. ex. `lib/journal/`, `lib/poems/`, `lib/newsletter/` ;
-  `hooks/theme/`. On regroupe par domaine, jamais par type technique.
+- **Organisation par domaine métier : un domaine = un dossier.** Même règle pour
+  `app/`, `components/`, `hooks/` et `lib/` — on regroupe par domaine, jamais par
+  type technique. P. ex. `components/newsletter/`, `components/letters/`,
+  `lib/poems/`, `lib/theme/`.
+  - Dans `app/`, l'arborescence **est** le routage : le regroupement par domaine
+    passe par les *route groups* `(domaine)` et la colocation en dossiers privés
+    préfixés `_` (`_components`, `_lib`…, hors routing) — jamais un dossier nu
+    qui créerait une URL involontaire.
 - **Server Actions** dans `app/actions/*` (`"use server"`), cf.
   `newsletter.ts`. Secrets via `process.env` (`.env*` est gitignore).
 - **Design system** — tout passe par les tokens de `app/globals.css`, exposés en
@@ -104,14 +109,13 @@ Ne devine pas une API depuis ta mémoire : vérifie dans les docs locales.
 ## Structure
 
 ```
-app/                Routes App Router
+app/                Routes App Router — domaines via route groups (domaine) + dossiers privés _*
   layout.tsx        Root layout (fonts, metadata, thème, <html lang="fr">)
   page.tsx          Landing (sections : hero, concept, lettres, poème, offre, faq, newsletter)
-  journal/          Blog « Le journal » ; articles en .mdx sous (post)/
   a-propos/         Page à propos
   actions/          Server Actions ("use server")
-components/         Composants UI partagés
-lib/                Helpers / logique métier — un dossier par domaine (journal/, poems/…)
+components/         Composants UI — un dossier par domaine
+lib/                Helpers / logique métier — un dossier par domaine (poems/, theme/…)
 hooks/              Hooks React — un dossier par domaine
 public/             Assets statiques (brand/, letters/)
 mdx-components.tsx  Styles globaux des éléments MDX

@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { Wordmark } from "@/components/wordmark";
-import { ThemeToggle } from "@/components/theme-toggle";
+import { Wordmark } from "@/components/layout/wordmark";
+import { ThemeToggle } from "@/components/theme/theme-toggle";
 
 const navLinks = [
   { href: "/a-propos", label: "À propos" },

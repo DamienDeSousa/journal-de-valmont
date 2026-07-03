@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import { SiteHeader } from "@/components/site-header";
-import { SiteFooter } from "@/components/site-footer";
-import { NewsletterForm } from "@/components/newsletter-form";
+import { SiteHeader } from "@/components/layout/site-header";
+import { SiteFooter } from "@/components/layout/site-footer";
+import { NewsletterForm } from "@/components/newsletter/newsletter-form";
 import { samplePoems } from "@/lib/poems";
 
 export const metadata: Metadata = {
@@ -44,7 +44,7 @@ export default function AProposPage() {
               cessé.
             </p>
             <p>
-              J&apos;ai choisi la poésie plutôt que la prose : pour parler
+              J&apos;ai choisi le vers plutôt que la prose : pour parler
               d&apos;amour, rien ne me semble plus juste ni plus élégant. Et le
               sonnet en particulier, assez long pour mener une idée jusqu&apos;à
               sa chute, assez court pour en garder la quintessence. J&apos;ai
@@ -151,9 +151,9 @@ export default function AProposPage() {
               lettre se prépare, sans jamais vous encombrer.
             </p>
             <div className="mt-8">
-              <NewsletterForm id="apropos-newsletter-email" />
+              <NewsletterForm />
             </div>
-            <p className="mt-8 text-sm text-muted">
+            {/* <p className="mt-8 text-sm text-muted">
               Une question, un mot&nbsp;?{" "}
               <a
                 href="mailto:contact@journaldevalmont.fr"
@@ -161,7 +161,7 @@ export default function AProposPage() {
               >
                 contact@journaldevalmont.fr
               </a>
-            </p>
+            </p> */}
           </div>
         </section>
       </main>
