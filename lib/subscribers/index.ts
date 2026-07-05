@@ -7,6 +7,8 @@
  */
 import { z } from "zod";
 
+import { getResendClient } from "@/lib/resend/client";
+
 export type Subscriber = {
   email: string;
   newsletter: boolean;
@@ -41,33 +43,21 @@ export type SaveResult = { ok: true } | { ok: false };
  * branché »), pour que le formulaire reste fonctionnel en local.
  */
 export async function saveSubscriber(subscriber: Subscriber): Promise<SaveResult> {
-  const apiKey = process.env.RESEND_API_KEY;
   const audienceId = process.env.RESEND_AUDIENCE_ID;
+  const resend = getResendClient();
 
-  if (!apiKey || !audienceId) {
+  if (!resend || !audienceId) {
     console.info(
       `[newsletter] inscription en attente de branchement Resend : ${subscriber.email}`,
     );
     return { ok: true };
   }
 
-  try {
-    const res = await fetch(
-      `https://api.resend.com/audiences/${audienceId}/contacts`,
-      {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${apiKey}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: subscriber.email,
-          unsubscribed: !subscriber.newsletter,
-        }),
-      },
-    );
-    return res.ok ? { ok: true } : { ok: false };
-  } catch {
-    return { ok: false };
-  }
+  const { error } = await resend.contacts.create({
+    audienceId,
+    email: subscriber.email,
+    unsubscribed: !subscriber.newsletter,
+  });
+
+  return error ? { ok: false } : { ok: true };
 }
