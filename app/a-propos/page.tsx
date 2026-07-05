@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { NewsletterForm } from "@/components/newsletter/newsletter-form";
+import { Portrait } from "@/components/about/portrait";
 import { samplePoems } from "@/lib/poems";
 
 export const metadata: Metadata = {
@@ -32,40 +33,45 @@ export default function AProposPage() {
 
       <main className="flex-1">
         {/* Intro — Damien */}
-        <section className="mx-auto w-full max-w-2xl px-5 pt-20 pb-16 sm:px-8 sm:pt-28">
+        <section className="mx-auto w-full max-w-5xl px-5 pt-20 pb-16 sm:px-8 sm:pt-28">
           <p className="text-xs uppercase tracking-[0.3em] text-accent">À propos</p>
           <h1 className="mt-6 text-4xl text-foreground sm:text-5xl">
             Derrière les lettres
           </h1>
-          <div className="mt-8 space-y-5 text-lg text-muted">
-            <p>
-              Je m&apos;appelle <span className="text-foreground">Damien</span>.
-              J&apos;ai commencé à écrire des vers un soir, et je n&apos;ai plus
-              cessé.
-            </p>
-            <p>
-              J&apos;ai choisi le vers plutôt que la prose : pour parler
-              d&apos;amour, rien ne me semble plus juste ni plus élégant. Et le
-              sonnet en particulier, assez long pour mener une idée jusqu&apos;à
-              sa chute, assez court pour en garder la quintessence. J&apos;ai
-              voulu m&apos;approcher de sa forme la plus classique, par amour de
-              la langue française — je ne cesse d&apos;apprendre sur toutes les
-              subtilités de la langue et des règles de versification.
-            </p>
-            <p>
-              Peu à peu, j&apos;ai compris que je n&apos;écrivais plus seulement
-              pour moi. Nous vivons une époque où les hommes et les femmes se
-              parlent de moins en moins, où l&apos;on se comprend mal, où les
-              écrans nous ont rendus impatients, anxieux, plus seuls que jamais.
-              Et depuis peu, l&apos;intelligence artificielle a rendu tout lisse,
-              sans grain et sans créativité.
-            </p>
-            <p>
-              Ces lettres sont ma manière de résister à cela : revenir aux
-              choses simples, au goût de l&apos;attente, au plaisir d&apos;une
-              belle lettre tracée comme autrefois. Réapprendre à se parler, à se
-              comprendre, à s&apos;aimer.
-            </p>
+          <div className="mt-10 grid items-start gap-10 md:grid-cols-[1fr_13rem] md:gap-14 lg:grid-cols-[1fr_15rem]">
+            <div className="order-2 space-y-5 text-lg text-muted md:order-1">
+              <p>
+                Je m&apos;appelle <span className="text-foreground">Damien</span>.
+                J&apos;ai commencé à écrire des vers un soir, et je n&apos;ai plus
+                cessé.
+              </p>
+              <p>
+                J&apos;ai choisi le vers plutôt que la prose : pour parler
+                d&apos;amour, rien ne me semble plus juste ni plus élégant. Et le
+                sonnet en particulier, assez long pour mener une idée jusqu&apos;à
+                sa chute, assez court pour en garder la quintessence. J&apos;ai
+                voulu m&apos;approcher de sa forme la plus classique, par amour de
+                la langue française — je ne cesse d&apos;apprendre sur toutes les
+                subtilités de la langue et des règles de versification.
+              </p>
+              <p>
+                Peu à peu, j&apos;ai compris que je n&apos;écrivais plus seulement
+                pour moi. Nous vivons une époque où les hommes et les femmes se
+                parlent de moins en moins, où l&apos;on se comprend mal, où les
+                écrans nous ont rendus impatients, anxieux, plus seuls que jamais.
+                Et depuis peu, l&apos;intelligence artificielle a rendu tout lisse,
+                sans grain et sans créativité.
+              </p>
+              <p>
+                Ces lettres sont ma manière de résister à cela : revenir aux
+                choses simples, au goût de l&apos;attente, au plaisir d&apos;une
+                belle lettre tracée comme autrefois. Réapprendre à se parler, à se
+                comprendre, à s&apos;aimer.
+              </p>
+            </div>
+            <div className="order-1 w-full max-w-[11rem] md:order-2 md:max-w-none md:sticky md:top-28">
+              <Portrait />
+            </div>
           </div>
         </section>
 

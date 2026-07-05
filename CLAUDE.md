@@ -89,6 +89,13 @@ Ne devine pas une API depuis ta mémoire : vérifie dans les docs locales.
     qui créerait une URL involontaire.
 - **Server Actions** dans `app/actions/*` (`"use server"`), cf.
   `newsletter.ts`. Secrets via `process.env` (`.env*` est gitignore).
+- **Clients de libs externes = singleton.** Toute lib qui expose un client à
+  instancier (SDK, ORM, API…) a son propre fichier `lib/<domaine>/client.ts` qui
+  n'exporte qu'un accesseur renvoyant l'instance partagée — jamais de `new` à la
+  volée dans une action, un composant ou un helper. Le singleton est caché sur
+  `globalThis` pour survivre au HMR (une seule instance par process), et renvoie
+  `null` quand la variable d'env requise manque (mode « pas encore branché »).
+  Modèle de référence : `lib/resend/client.ts` (`getResendClient()`).
 - **Design system** — tout passe par les tokens de `app/globals.css`, exposés en
   utilitaires Tailwind. N'écris pas de couleurs en dur :
   - Fonds/texte : `bg-background`, `bg-surface`, `bg-surface-2`,
