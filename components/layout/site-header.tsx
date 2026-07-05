@@ -1,8 +1,9 @@
 import Link from "next/link";
 import { Wordmark } from "@/components/layout/wordmark";
+import { MobileNav, type NavLink } from "@/components/layout/mobile-nav";
 import { ThemeToggle } from "@/components/theme/theme-toggle";
 
-const navLinks = [
+const navLinks: NavLink[] = [
   { href: "/a-propos", label: "À propos" },
   // { href: "/#avis", label: "Avis" },
   { href: "/#faq", label: "FAQ" },
@@ -34,6 +35,7 @@ export function SiteHeader() {
           >
             S&apos;abonner
           </Link>
+          <MobileNav links={navLinks} />
         </div>
       </div>
     </header>

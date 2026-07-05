@@ -106,10 +106,15 @@ body::after {
   background: radial-gradient(120% 90% at 50% 0%, transparent 55%, var(--vignette) 100%);
 }
 
-/* Le contenu passe au-dessus des couches décoratives */
-body > * {
-  position: relative;
-  z-index: 1;
+/* Le contenu passe au-dessus des couches décoratives. Dans `@layer base` pour
+   que ce ne soit qu'un défaut : sinon (non-layered) cette règle écraserait les
+   utilitaires Tailwind `sticky`/`z-*` (dans `@layer utilities`) et aplatirait
+   le header au même niveau que le main — cf. menu mobile passant sous le hero. */
+@layer base {
+  body > * {
+    position: relative;
+    z-index: 1;
+  }
 }
 
 h1, h2, h3, h4 {
