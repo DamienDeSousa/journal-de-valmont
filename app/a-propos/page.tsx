@@ -1,29 +1,37 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { NewsletterForm } from "@/components/newsletter/newsletter-form";
 import { Portrait } from "@/components/about/portrait";
-import { samplePoems } from "@/lib/poems";
 
 export const metadata: Metadata = {
   title: "À propos",
   description:
-    "Derrière Le journal de Valmont : Damien, le concept du club, ce qui l'inspire et sa manière d'écrire chaque lettre à la main.",
+    "Derrière Le journal de Valmont : Damien, ses vers, son apprentissage de la calligraphie anglaise et sa manière de travailler, du brouillon à la plume.",
 };
 
 const method = [
   {
-    title: "La plume",
-    text: "Chaque lettre est tracée à la main, sans raccourci. L'écriture porte la trace du temps qu'on y a mis.",
+    title: "Le brouillon",
+    text: "Le vers se cherche d’abord en brouillon\u00a0: raturé, repris, ses syllabes comptées et recomptées, jusqu’à ce qu’il tienne.",
   },
   {
-    title: "Le papier",
-    text: "Un papier choisi pour sa texture et sa tenue à l'encre, dans l'esprit des correspondances anciennes.",
+    title: "La mise au propre",
+    text: "Une fois le vers trouvé, je le recopie à la plume, en calligraphie anglaise. Pour l’instant en grand\u00a0: un vers par page.",
   },
   {
-    title: "La cire",
-    text: "L'enveloppe est close d'un cachet de cire au sceau à la fleur de lys. On la rompt comme on ouvre un secret.",
+    title: "Le partage",
+    text: "La planche paraît sur Instagram, puis rejoint le carnet. Avec ses défauts\u00a0: ils disent où en est la main.",
   },
+];
+
+/** Extrait d'un poème de Damien. */
+const excerpt = [
+  "Le remous de tes mains, rompt mon intérieur",
+  "Mordu par le moment, affamé par l’absence",
+  "Tes lèvres sur ma peau, ont forcé mes défenses",
+  "Le monde devient flou, supprimant ma douleur",
 ];
 
 export default function AProposPage() {
@@ -55,6 +63,11 @@ export default function AProposPage() {
                 subtilités de la langue et des règles de versification.
               </p>
               <p>
+                Puis j&apos;ai voulu donner à ces vers une forme digne d&apos;eux.
+                J&apos;ai pris la plume et commencé la calligraphie anglaise&nbsp;: des
+                pleins, des déliés, une pente à tenir, et beaucoup de patience.
+              </p>
+              <p>
                 Peu à peu, j&apos;ai compris que je n&apos;écrivais plus seulement
                 pour moi. Nous vivons une époque où les hommes et les femmes se
                 parlent de moins en moins, où l&apos;on se comprend mal, où les
@@ -63,9 +76,9 @@ export default function AProposPage() {
                 sans grain et sans créativité.
               </p>
               <p>
-                Ces lettres sont ma manière de résister à cela : revenir aux
-                choses simples, au goût de l&apos;attente, au plaisir d&apos;une
-                belle lettre tracée comme autrefois. Réapprendre à se parler, à se
+                Ce journal est ma manière de résister à cela : revenir aux choses
+                simples, au goût de l&apos;attente, au plaisir d&apos;une belle
+                lettre tracée comme autrefois. Réapprendre à se parler, à se
                 comprendre, à s&apos;aimer.
               </p>
             </div>
@@ -75,16 +88,17 @@ export default function AProposPage() {
           </div>
         </section>
 
-        {/* Le concept */}
+        {/* Ce journal */}
         <section className="scroll-mt-20 border-y border-border bg-surface/50">
           <div className="mx-auto w-full max-w-2xl px-5 py-16 sm:px-8">
-            <h2 className="text-3xl text-foreground">Le concept</h2>
+            <h2 className="text-3xl text-foreground">Ce journal</h2>
             <p className="mt-5 text-lg text-muted">
-              Un club de correspondance. Chaque mois, vous recevez une lettre
-              manuscrite contenant un poème d&apos;amour, écrit à la plume et cacheté
-              à la cire — rien que pour vous. Pas d&apos;écran, pas de
-              notification : une enveloppe, un cachet à rompre, quelques vers à
-              lire lentement.
+              Un carnet d&apos;apprentissage, tenu en public. J&apos;y partage mes
+              vers, mis au propre à la plume. Pour l&apos;instant j&apos;écris
+              gros, un vers par page, et tout n&apos;est pas parfait&nbsp;: une boucle
+              qui penche, un délié qui tremble. C&apos;est voulu. Je préfère
+              montrer le chemin plutôt que d&apos;attendre la ligne
+              d&apos;arrivée.
             </p>
           </div>
         </section>
@@ -123,26 +137,29 @@ export default function AProposPage() {
           </div>
         </section>
 
-        {/* Quelques poèmes */}
+        {/* Aperçu d'un poème */}
         <section className="mx-auto w-full max-w-2xl px-5 py-20 sm:px-8">
-          <h2 className="text-center text-3xl text-foreground">Quelques poèmes</h2>
-          <p className="mt-3 text-center text-muted">
-            Un avant-goût de ce qui se glisse dans les enveloppes.
+          <p className="text-center text-xs uppercase tracking-[0.3em] text-accent">
+            Un aperçu
           </p>
-          <div className="mt-12 space-y-12">
-            {samplePoems.map((poem) => (
-              <figure key={poem.id} className="text-center">
-                <h3 className="font-serif text-sm uppercase tracking-[0.2em] text-accent">
-                  {poem.title}
-                </h3>
-                <blockquote className="mt-4 space-y-1 font-serif text-xl italic leading-relaxed text-foreground sm:text-2xl">
-                  {poem.lines.map((line, i) => (
-                    <p key={i}>{line}</p>
-                  ))}
-                </blockquote>
-              </figure>
-            ))}
-          </div>
+          <figure className="mt-8 rounded-sm border border-border bg-surface px-8 py-12 shadow-sm sm:px-14">
+            <blockquote className="space-y-4 text-center font-serif text-2xl italic leading-relaxed text-foreground sm:text-[1.7rem]">
+              {excerpt.map((line) => (
+                <p key={line}>{line}</p>
+              ))}
+            </blockquote>
+            <figcaption className="mt-8 text-center text-sm uppercase tracking-[0.18em] text-muted">
+              Extrait — Le journal de Valmont
+            </figcaption>
+          </figure>
+          <p className="mt-10 text-center">
+            <Link
+              href="/carnet"
+              className="text-primary underline-offset-4 hover:underline"
+            >
+              Voir les vers calligraphiés dans le carnet
+            </Link>
+          </p>
         </section>
 
         {/* Contact / newsletter */}
@@ -154,7 +171,7 @@ export default function AProposPage() {
             <h2 className="text-3xl text-foreground">Restons en correspondance</h2>
             <p className="mx-auto mt-3 max-w-md text-muted">
               Laissez-moi votre adresse e-mail : je vous écris quand une nouvelle
-              lettre se prépare, sans jamais vous encombrer.
+              planche paraît, sans jamais vous encombrer.
             </p>
             <div className="mt-8">
               <NewsletterForm />

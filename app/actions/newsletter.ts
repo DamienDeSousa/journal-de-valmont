@@ -50,6 +50,6 @@ export async function subscribeToNewsletter(
 
   return {
     status: "success",
-    message: "C'est noté. Surveillez votre boîte : une lettre vous attend bientôt.",
+    message: "C’est noté. Je vous écrirai quand une nouvelle planche paraîtra.",
   };
 }

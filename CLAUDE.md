@@ -2,9 +2,10 @@
 
 # Le journal de Valmont — guide du dépôt
 
-Landing page (bientôt boutique) d'un club de correspondance : lettres
-manuscrites et poèmes d'amour, cachetés à la cire. Copie et contenu **en
-français**.
+Carnet d'apprentissage tenu en public : les vers de Damien, mis au propre à la
+plume en calligraphie anglaise et publiés d'abord sur Instagram, puis recopiés
+ici sous forme de **planches**. Le club de lettres par abonnement est reporté
+sans date : aucune mention sur le site. Copie et contenu **en français**.
 
 ## Stack
 
@@ -62,8 +63,8 @@ Ne devine pas une API depuis ta mémoire : vérifie dans les docs locales.
 ## Conventions du projet
 
 - **Server Components par défaut.** N'ajoute `"use client"` que si nécessaire
-  (état, effets, event handlers) — cf. `components/theme-toggle.tsx`,
-  `components/newsletter-form.tsx`.
+  (état, effets, event handlers) — cf. `components/theme/theme-toggle.tsx`,
+  `components/newsletter/newsletter-form.tsx`.
 - **Évite `useEffect` autant que possible.** Cherche d'abord une alternative :
   faire le travail côté serveur (Server Component / Server Action), dériver la
   valeur au rendu plutôt que la synchroniser dans un état, `useMemo` pour un
@@ -81,8 +82,8 @@ Ne devine pas une API depuis ta mémoire : vérifie dans les docs locales.
   état complexe) part dans un helper (`lib/`) ou un hook (`hooks/`).
 - **Organisation par domaine métier : un domaine = un dossier.** Même règle pour
   `app/`, `components/`, `hooks/` et `lib/` — on regroupe par domaine, jamais par
-  type technique. P. ex. `components/newsletter/`, `components/letters/`,
-  `lib/poems/`, `lib/theme/`.
+  type technique. P. ex. `components/newsletter/`, `components/journal/`,
+  `lib/journal/`, `lib/theme/`.
   - Dans `app/`, l'arborescence **est** le routage : le regroupement par domaine
     passe par les *route groups* `(domaine)` et la colocation en dossiers privés
     préfixés `_` (`_components`, `_lib`…, hors routing) — jamais un dossier nu
@@ -107,8 +108,9 @@ Ne devine pas une API depuis ta mémoire : vérifie dans les docs locales.
 - **Thème clair/sombre** : classe `.dark` posée avant le paint par un script
   inline dans `app/layout.tsx`. Style le mode sombre avec la variante `dark:`.
 - **Images** : `next/image`, assets dans `public/`. Assets de marque documentés
-  dans `public/brand/README.md`, photos des lettres dans
-  `public/letters/README.md`. Esprit maison : le rendu papier/collage est
+  dans `public/brand/README.md`, photos des planches (et marche à suivre pour en
+  ajouter une) dans `public/journal/README.md`. Jamais de faux contenu : sans
+  planche, le carnet affiche un état vide. Esprit maison : le rendu papier/collage est
   recréé en CSS plutôt que d'importer des images jetables.
 - **Contenu français** : `lang="fr"`. Dans le JSX, échappe les apostrophes
   (`&apos;`) ; dans les chaînes, apostrophe typographique `’`.
@@ -118,12 +120,13 @@ Ne devine pas une API depuis ta mémoire : vérifie dans les docs locales.
 ```
 app/                Routes App Router — domaines via route groups (domaine) + dossiers privés _*
   layout.tsx        Root layout (fonts, metadata, thème, <html lang="fr">)
-  page.tsx          Landing (sections : hero, concept, lettres, poème, offre, faq, newsletter)
+  page.tsx          Accueil (sections : hero, derniers vers, apprentissage, newsletter)
+  carnet/           Toutes les planches
   a-propos/         Page à propos
   actions/          Server Actions ("use server")
 components/         Composants UI — un dossier par domaine
-lib/                Helpers / logique métier — un dossier par domaine (poems/, theme/…)
+lib/                Helpers / logique métier — un dossier par domaine (journal/, instagram/, theme/…)
 hooks/              Hooks React — un dossier par domaine
-public/             Assets statiques (brand/, letters/)
+public/             Assets statiques (brand/, journal/, about/)
 mdx-components.tsx  Styles globaux des éléments MDX
 ```

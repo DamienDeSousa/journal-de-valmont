@@ -2,11 +2,11 @@ import Link from "next/link";
 import { Wordmark } from "@/components/layout/wordmark";
 import { MobileNav, type NavLink } from "@/components/layout/mobile-nav";
 import { ThemeToggle } from "@/components/theme/theme-toggle";
+import { InstagramLink } from "@/components/instagram/instagram-link";
 
 const navLinks: NavLink[] = [
+  { href: "/carnet", label: "Le carnet" },
   { href: "/a-propos", label: "À propos" },
-  // { href: "/#avis", label: "Avis" },
-  { href: "/#faq", label: "FAQ" },
 ];
 
 export function SiteHeader() {
@@ -29,12 +29,7 @@ export function SiteHeader() {
 
         <div className="flex items-center gap-3">
           <ThemeToggle />
-          <Link
-            href="/#offre"
-            className="hidden rounded-full bg-primary px-5 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary-hover sm:inline-flex"
-          >
-            S&apos;abonner
-          </Link>
+          <InstagramLink className="hidden rounded-full bg-primary px-5 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary-hover sm:inline-flex" />
           <MobileNav links={navLinks} />
         </div>
       </div>

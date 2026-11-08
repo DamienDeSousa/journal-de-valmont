@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { InstagramLink } from "@/components/instagram/instagram-link";
 
 export type NavLink = { href: string; label: string };
 
@@ -8,7 +9,7 @@ export type NavLink = { href: string; label: string };
  * Menu mobile sobre. L'ouverture reste gérée par l'élément natif `<details>`
  * (pas de `useState`, pas de `useEffect`) ; on ajoute seulement un handler pour
  * refermer le panneau au clic sur un lien — sinon, sur une ancre de la même page
- * (`/#offre`, `/#faq`), le `<details>` resterait ouvert faute de remontage.
+ * (`/#carnet`, `/#newsletter`), le `<details>` resterait ouvert faute de remontage.
  * Visible sous `md`, là où la navigation desktop est masquée.
  */
 export function MobileNav({ links }: { links: NavLink[] }) {
@@ -61,12 +62,7 @@ export function MobileNav({ links }: { links: NavLink[] }) {
             {link.label}
           </Link>
         ))}
-        <Link
-          href="/#offre"
-          className="mt-1 block rounded-full bg-primary px-4 py-2.5 text-center text-sm font-medium text-primary-foreground transition-colors hover:bg-primary-hover sm:hidden"
-        >
-          S&apos;abonner
-        </Link>
+        <InstagramLink className="mt-1 flex justify-center rounded-full bg-primary px-4 py-2.5 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary-hover sm:hidden" />
       </nav>
     </details>
   );

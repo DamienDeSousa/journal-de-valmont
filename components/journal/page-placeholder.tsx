@@ -1,5 +1,5 @@
-/** Vignette provisoire évoquant une lettre manuscrite, rendue en CSS. */
-export function LetterPlaceholder() {
+/** Vignette « page à paraître » évoquant une page manuscrite, rendue en CSS. */
+export function PagePlaceholder() {
   const lines = [96, 88, 92, 72, 84, 90, 58];
   return (
     <div
