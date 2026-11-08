@@ -1,7 +1,7 @@
 # Assets de marque
 
 - **`logo_tampon.png`** — logo principal (sceau à la fleur de lys), fourni depuis
-  le Drive « Veille créative ». Intégré dans `components/wordmark.tsx` (header) et
+  le Drive « Veille créative ». Intégré dans `components/layout/wordmark.tsx` (header) et
   dans le hero de la page d'accueil, via `next/image`. En mode sombre il est
   inversé (`dark:invert`) pour rester lisible.
 

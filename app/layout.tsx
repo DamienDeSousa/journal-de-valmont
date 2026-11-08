@@ -20,16 +20,16 @@ const ebGaramond = EB_Garamond({
 
 export const metadata: Metadata = {
   title: {
-    default: "Le journal de Valmont — Lettres manuscrites & poèmes d'amour",
+    default: "Le journal de Valmont — Calligraphie anglaise & poésie",
     template: "%s · Le journal de Valmont",
   },
   description:
-    "Le journal de Valmont est un club de correspondance. Chaque mois, recevez une lettre manuscrite et un poème d'amour, tracés à la plume et cachetés à la cire, rien que pour vous.",
+    "Le journal de Valmont est le carnet d’apprentissage de Damien : ses vers, mis au propre à la plume en calligraphie anglaise, partagés planche après planche, avec leurs imperfections.",
   applicationName: "Le journal de Valmont",
   openGraph: {
     title: "Le journal de Valmont",
     description:
-      "Un club de correspondance : chaque mois, une lettre manuscrite et un poème d'amour, cachetés à la cire, rien que pour vous.",
+      "Un carnet d’apprentissage : des vers calligraphiés à la plume en anglaise, planche après planche.",
     locale: "fr_FR",
     type: "website",
   },
